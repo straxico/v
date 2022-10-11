@@ -24,13 +24,12 @@ def get_host_ip():
 
 def parse_inbounds(jsonobj):
     vmesses = []
-    if "inbounds" in jsonobj:
-        for ib in jsonobj["inbounds"]:
-            if ib["protocol"] == "vmess":
-                try:
-                    vmesses += inbound2vmess(ib)
-                except UnknowProtocolException:
-                    pass
+    if "inbound" in jsonobj:
+        if jsonobj["inbound"]["protocol"] == "vmess":
+            try:
+                vmesses += inbound2vmess(jsonobj["inbound"])
+            except UnknowProtocolException:
+                pass
 
     for v in vmesses:
         link = "vmess://" + base64.b64encode(json.dumps(v, sort_keys=True).encode('utf-8')).decode()
