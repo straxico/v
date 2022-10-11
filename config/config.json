@@ -1,0 +1,55 @@
+{
+  "log": {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "inbound": {
+    "listen": "0.0.0.0",
+    "port": 1013,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "c2d9529c-45b5-4ca3-8784-416acf424992",
+          "alterId": 10,
+          "security": "auto"
+        },        {
+          "id": "040b50f8-0fca-4781-bb0a-45758a601294",
+          "alterId": 10,
+          "security": "auto"
+        }
+
+        
+      ]
+    },
+    "streamSettings":{
+      "network":"ws"
+    }
+  },
+  "outbound": {
+    "protocol": "freedom"
+  },
+  "inboundDetour": null,
+  "outboundDetour": [
+    {
+      "protocol": "blackhole",
+      "tag": "blackhole"
+    }
+  ],
+  "routing": {
+    "strategy": "rules",
+    "settings": {
+      "domainStrategy": null,
+      "rules": [
+        {
+          "type": "field",
+          "outboundTag": "blackhole",
+          "ip": [
+            "geoip:private"
+          ]
+        }
+      ]
+    }
+  }
+}
