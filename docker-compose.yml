@@ -1,7 +1,7 @@
 version: "3"
 services:
   v2ray:
-    image: ghcr.io/antyung88/v2ray:latest
+    image: ghcr.io/getimages/v2fly-core:v4.45.2
     container_name: v2ray_upstream
     restart: always
     command: [ "v2ray", "-config=/etc/v2ray/config.json" ]
